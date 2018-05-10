@@ -10,10 +10,11 @@ public class WordSearchTest {
 
     @Test
     public void findsFirstLetterOfSingleHorizontalMatchInTinyGrid() {
-        File input = new File("tinygrid.txt");
-        WordSearch searcher = new WordSearch(input);
+        String file = "inputfiles/tinygrid.txt";
+        WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
         assertEquals(1, results.size());
+        assertEquals("HI: (0,0)", results.get(0));
     }
 
 }
