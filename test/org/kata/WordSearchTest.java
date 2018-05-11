@@ -9,12 +9,12 @@ import java.util.List;
 public class WordSearchTest {
 
     @Test
-    public void findsFirstLetterOfSingleHorizontalMatchInTinyGrid() {
+    public void findsSingleHorizontalMatchInTinyGrid() {
         String file = "inputfiles/tinygrid.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
         assertEquals(1, results.size());
-        assertEquals("HI: (0,0)", results.get(0));
+        assertEquals("HI: (0,0),(1,0)", results.get(0));
     }
 
 }

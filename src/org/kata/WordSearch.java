@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 public class WordSearch {
 
-    private final String fileName;
     private String header;
     private String[] grid;
 
@@ -19,29 +18,40 @@ public class WordSearch {
     }
 
     public WordSearch(String fileName) {
-        this.fileName = fileName;
+        loadPuzzle(fileName);
     }
 
     public List<String> getResults() {
-        loadPuzzle();
 
-        int x = -1;
-        int y = -1;
+        int[] x = new int[this.grid.length];
+        int[] y = new int[this.grid.length];
         for (int i = 0; i < this.grid.length; i++) {
             if (this.grid[i].contains(this.header)) {
-                x = i;
-                y = this.grid[i].indexOf(this.header);
+                for (int j = 0; j < this.header.length(); j++) {
+                    x[j] = this.grid[i].indexOf(this.header) + j;
+                    y[j] = i;
+                }
                 break;
             }
         }
 
         ArrayList<String> results = new ArrayList<>();
-        results.add(this.header + ": (" + x + "," + y + ")");
+        StringBuilder result = new StringBuilder(this.header);
+        result.append(": ");
+        for (int i = 0; i < this.header.length(); i++) {
+            if (i > 0) result.append(",");
+            result.append("(");
+            result.append(x[i]);
+            result.append(",");
+            result.append(y[i]);
+            result.append(")");
+        }
+        results.add(result.toString());
         return results;
     }
 
-    private void loadPuzzle() {
-        try (Stream<String> stream = Files.lines(Paths.get(this.fileName))) {
+    private void loadPuzzle(String fileName) {
+        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
 
             ArrayList<String> rows = stream.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
 
