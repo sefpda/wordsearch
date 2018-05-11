@@ -10,7 +10,8 @@ import java.util.stream.Stream;
 public class WordSearch {
 
     private String[] words;
-    private String[] grid;
+    private String[] rows;
+    private String[] columns;
 
     public static void main(String[] args) {
         // write your code here
@@ -37,39 +38,29 @@ public class WordSearch {
     }
 
     private String verticalResult(String word) {
-        boolean foundWord = false;
-        int[] x = new int[this.grid.length];
-        int[] y = new int[this.grid.length];
-        for (int i = 0; i < this.grid.length; i++) {
-            char[] column = new char[this.grid.length];
+        boolean xStable = true;
+        boolean yStable = false;
 
-            for (int j = 0; j < this.grid.length; j++) {
-                column[j] = this.grid[j].charAt(i);
-            }
-
-            String columnString = new String(column);
-            if (columnString.contains(word)) {
-                foundWord = true;
-                for (int j = 0; j < word.length(); j++) {
-                    x[j] = i;
-                    y[j] = columnString.indexOf(word) + j;
-                }
-                break;
-            }
-        }
-        return generateResult(word, x, y);
+        return findCoordinates(this.columns, word, xStable, yStable);
     }
 
     private String horizontalCoordinates(String word) {
+        boolean xStable = false;
+        boolean yStable = true;
+
+        return findCoordinates(this.rows, word, xStable, yStable);
+    }
+
+    private String findCoordinates(String[] source, String word, boolean xStable, boolean yStable) {
         boolean foundWord = false;
-        int[] x = new int[this.grid.length];
-        int[] y = new int[this.grid.length];
-        for (int i = 0; i < this.grid.length; i++) {
-            if (this.grid[i].contains(word)) {
+        int[] x = new int[source.length];
+        int[] y = new int[source.length];
+        for (int i = 0; i < source.length; i++) {
+            if (source[i].contains(word)) {
                 foundWord = true;
                 for (int j = 0; j < word.length(); j++) {
-                    x[j] = this.grid[i].indexOf(word) + j;
-                    y[j] = i;
+                    x[j] = xStable ? i : source[i].indexOf(word) + j;
+                    y[j] = yStable ? i : source[i].indexOf(word) + j;
                 }
                 break;
             }
@@ -95,15 +86,24 @@ public class WordSearch {
     private void loadPuzzle(String fileName) {
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
 
-            ArrayList<String> rows = stream.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+            List<String> inputRows = stream.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
 
-            String header = rows.remove(0);
+            String header = inputRows.remove(0);
             this.words = header.split(",");
 
-            this.grid = new String[rows.size()];
+            this.rows = new String[inputRows.size()];
+            this.columns = new String[inputRows.size()];
 
-            for (int i = 0; i < rows.size(); i++) {
-                this.grid[i] = rows.get(i).replace(",","");
+            for (int i = 0; i < inputRows.size(); i++) {
+                this.rows[i] = inputRows.get(i).replace(",","");
+            }
+            for (int i = 0; i < inputRows.size(); i++) {
+                char[] column = new char[this.rows.length];
+
+                for (int j = 0; j < this.rows.length; j++) {
+                    column[j] = this.rows[j].charAt(i);
+                }
+                this.columns[i] = new String(column);
             }
 
         } catch (IOException e) {
