@@ -57,17 +57,7 @@ public class WordSearch {
                 break;
             }
         }
-        StringBuilder result = new StringBuilder(word);
-        result.append(": ");
-        for (int i = 0; i < word.length(); i++) {
-            if (i > 0) result.append(",");
-            result.append("(");
-            result.append(x[i]);
-            result.append(",");
-            result.append(y[i]);
-            result.append(")");
-        }
-        return result.toString();
+        return generateResult(word, x, y);
     }
 
     private String horizontalCoordinates(String word) {
@@ -85,6 +75,10 @@ public class WordSearch {
             }
         }
         if (!foundWord) return null;
+        return generateResult(word, x, y);
+    }
+
+    private String generateResult(String word, int[] x, int[] y) {
         StringBuilder result = new StringBuilder(word);
         result.append(": ");
         for (int i = 0; i < word.length(); i++) {
