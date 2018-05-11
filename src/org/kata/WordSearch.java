@@ -12,6 +12,7 @@ public class WordSearch {
 
     private final String fileName;
     private String header;
+    private String[][] grid;
 
     public static void main(String[] args) {
         // write your code here
@@ -23,8 +24,9 @@ public class WordSearch {
 
     public List<String> getResults() {
         loadPuzzle();
+
         ArrayList<String> results = new ArrayList<>();
-        results.add("HI: (0,0)");
+        results.add(this.header + ": (0,0)");
         return results;
     }
 
@@ -34,6 +36,11 @@ public class WordSearch {
             ArrayList<String> rows = stream.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
 
             this.header = rows.remove(0);
+            this.grid = new String[rows.size()][rows.size()];
+
+            for (int i = 0; i < rows.size(); i++) {
+                this.grid[i] = rows.get(i).split(",");
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
