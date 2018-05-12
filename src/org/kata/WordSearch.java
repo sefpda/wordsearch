@@ -1,7 +1,6 @@
 package org.kata;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class WordSearch {
     private String downwardDiagonal(String word) {
         boolean xStable = false;
         boolean yStable = false;
-        return findCoordinates(this.rows, this.columns, word);
+        return findDiagonalCoordinates(this.rows, word);
     }
 
     private String verticalResult(String word) {
@@ -61,134 +60,33 @@ public class WordSearch {
         return findCoordinates(this.rows, word, xStable, yStable);
     }
 
-    private String findCoordinates(String[] rows, String[] columns, String word) {
-//        boolean foundWord = false;
+    private String findDiagonalCoordinates(String[] rows, String word) {
+        boolean foundWord = false;
         int[] x = new int[rows.length];
         int[] y = new int[columns.length];
 
-        int startX = 0;
-        int startY = 0;
-        char[] letters = new char[rows.length];
-
-        for (int i = 0; i < letters.length; i++) {
-           letters[i] = rows[startY + i].charAt(startX + i);
-        }
-        String row1 = new String(letters);
-        if (row1.contains(word)) {
-            int xoffset = row1.indexOf(word) + startX;
-            int yoffset = row1.indexOf(word) + startY;
-            for (int i = 0; i < word.length(); i++) {
-                x[i] = i + xoffset;
-                y[i] = i + yoffset;
+        for (int startY = 0; startY < rows.length - 1; startY++)  {
+            for (int startX = 0; startX < rows.length - 1; startX++) {
+                if (startY > 0 && startX > 0) continue; // after first row only start at x of 0
+                char[] letters = new char[rows.length];
+                for (int i = 0; i < letters.length && startX + i < letters.length && startY + i < letters.length; i++) {
+                    letters[i] = rows[startY + i].charAt(startX + i);
+                }
+                String row = new String(letters);
+                if (row.contains(word)) {
+                    int xOffset = row.indexOf(word) + startX;
+                    int yOffset = row.indexOf(word) + startY;
+                    for (int j = 0; j < word.length(); j++) {
+                        x[j] = j + xOffset;
+                        y[j] = j + yOffset;
+                    }
+                    foundWord = true;
+                    break;
+                }
             }
-            return generateResult(word, x, y);
         }
-
-        startX = 1;
-        startY = 0;
-        Arrays.fill(letters, ' ');
-        for (int i = 0; i < letters.length && startX + i < letters.length; i++) {
-            letters[i] = rows[startY + i].charAt(startX + i);
-        }
-        String row2 = new String(letters);
-        if (row2.contains(word)) {
-            int xoffset = row2.indexOf(word) + startX;
-            int yoffset = row2.indexOf(word) + startY;
-            for (int i = 0; i < word.length(); i++) {
-                x[i] = i + xoffset;
-                y[i] = i + yoffset;
-            }
-            return generateResult(word, x, y);
-        }
-
-        startX = 2;
-        startY = 0;
-        Arrays.fill(letters, ' ');
-        for (int i = 0; i < letters.length && startX + i < letters.length; i++) {
-            letters[i] = rows[startY + i].charAt(startX + i);
-        }
-        String row3 = new String(letters);
-        if (row3.contains(word)) {
-            int xoffset = row3.indexOf(word) + startX;
-            int yoffset = row3.indexOf(word) + startY;
-            for (int i = 0; i < word.length(); i ++) {
-                x[i] = i + xoffset;
-                y[i] = i + yoffset;
-            }
-            return generateResult(word, x, y);
-        }
-
-        startX = 3;
-        startY = 0;
-        Arrays.fill(letters, ' ');
-        for (int i = 0; i < letters.length && startX + i < letters.length; i++) {
-            letters[i] = rows[startY + i].charAt(startX + i);
-        }
-        String row4 = new String(letters);
-        if (row4.contains(word)) {
-            int xoffset = row4.indexOf(word) + startX;
-            int yoffset = row4.indexOf(word) + startY;
-            for (int i = 0; i < word.length(); i++) {
-                x[i] = i + xoffset;
-                y[i] = i + yoffset;
-            }
-            return generateResult(word, x, y);
-        }
-
-        startX = 0;
-        startY = 1;
-        Arrays.fill(letters, ' ');
-        for (int i = 0; i < letters.length && startX + i < letters.length && startY + i < letters.length; i++) {
-            letters[i] = rows[startY + i].charAt(startX + i);
-        }
-        String row5 = new String(letters);
-        if (row5.contains(word)) {
-            int xoffset = row5.indexOf(word) + startX;
-            int yoffset = row5.indexOf(word) + startY;
-            for (int i = 0; i < word.length(); i++) {
-                x[i] = i + xoffset;
-                y[i] = i + yoffset;
-            }
-            return generateResult(word, x, y);
-        }
-
-        startX = 0;
-        startY = 2;
-        Arrays.fill(letters, ' ');
-        for (int i = 0; i < letters.length && startX + i < letters.length && startY + i < letters.length; i++) {
-            letters[i] = rows[startY + i].charAt(startX + i);
-        }
-        String row6 = new String(letters);
-        if (row6.contains(word)) {
-            int xoffset = row6.indexOf(word) + startX;
-            int yoffset = row6.indexOf(word) + startY;
-            for (int i = 0; i < word.length(); i++) {
-                x[i] = i + xoffset;
-                y[i] = i + yoffset;
-            }
-            return generateResult(word, x, y);
-        }
-
-        startX = 0;
-        startY = 3;
-        Arrays.fill(letters, ' ');
-        for (int i = 0; i < letters.length && startX + i < letters.length && startY + i < letters.length; i++) {
-            letters[i] = rows[startY + i].charAt(startX + i);
-        }
-        String row7 = new String(letters);
-        if (row7.contains(word)) {
-            int xoffset = row7.indexOf(word) + startX;
-            int yoffset = row7.indexOf(word) + startY;
-            for (int i = 0; i < word.length(); i++) {
-                x[i] = i + xoffset;
-                y[i] = i + yoffset;
-            }
-            return generateResult(word, x, y);
-        }
-
-//        if (!foundWord) return null;
-//        return generateResult(word, x, y);
-        return null;
+        if (!foundWord) return null;
+        return generateResult(word, x, y);
     }
 
     private String findCoordinates(String[] source, String word, boolean xStable, boolean yStable) {
