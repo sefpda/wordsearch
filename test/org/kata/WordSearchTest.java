@@ -37,4 +37,15 @@ public class WordSearchTest {
         assertEquals("EUGENE: (0,0),(0,1),(0,2),(0,3),(0,4),(0,5)", results.get(3));
     }
 
+    @Test
+    public void findsDownwardDiagonal() {
+        String file = "inputfiles/downdiagonal.txt";
+        WordSearch searcher = new WordSearch(file);
+        List<String> results = searcher.getResults();
+        assertEquals("WHEN: (0,0),(1,1),(2,2),(3,3)", results.get(0));
+        assertEquals("MY: (0,3),(1,4)", results.get(1));
+        assertEquals("NOW: (2,0),(3,1),(4,2)", results.get(2));
+        assertEquals("HI: (1,3),(2,4)", results.get(3));
+    }
+
 }
