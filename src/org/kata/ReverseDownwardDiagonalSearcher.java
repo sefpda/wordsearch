@@ -27,8 +27,8 @@ public class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
                 }
                 String row = new String(letters);
                 if (row.contains(reversed)) {
-                    int xOffset = reversed.length() + row.indexOf(reversed) - 1;
-                    int yOffset = reversed.length() + row.indexOf(reversed) - 1;
+                    int xOffset = row.indexOf(reversed) + reversed.length() + startX - 1;
+                    int yOffset = row.indexOf(reversed) + reversed.length() + startY - 1;
                     for (int j = 0; j < reversed.length(); j++) {
                         x[j] = xOffset - j;
                         y[j] = yOffset - j;

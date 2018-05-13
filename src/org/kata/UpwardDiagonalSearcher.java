@@ -29,7 +29,7 @@ class UpwardDiagonalSearcher extends AbstractSearcher {
                 String row = new String(letters);
                 if (row.contains(word)) {
                     int xOffset = row.indexOf(word) + startX;
-                    int yOffset = row.indexOf(word) + startY;
+                    int yOffset = startY - row.indexOf(word);
                     for (int j = 0; j < word.length(); j++) {
                         x[j] = j + xOffset;
                         y[j] = yOffset - j;

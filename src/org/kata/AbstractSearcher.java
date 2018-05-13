@@ -42,8 +42,8 @@ public abstract class AbstractSearcher {
             if (source[i].contains(reversed)) {
                 foundWord = true;
                 for (int j = 0; j < word.length(); j++) {
-                    x[j] = xStable ? i : source.length - i - word.length() - j;
-                    y[j] = yStable ? i : source.length - source[i].indexOf(reversed) - j;
+                    x[j] = xStable ? i : source[i].indexOf(reversed) + reversed.length() - 1 - j;
+                    y[j] = yStable ? i : source[i].indexOf(reversed) + reversed.length() - 1 - j;
                 }
                 break;
             }

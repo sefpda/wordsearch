@@ -27,11 +27,11 @@ public class ReverseUpwardDiagonalSearcher extends AbstractSearcher {
                 String reversed = new StringBuilder(word).reverse().toString();
                 String row = new String(letters);
                 if (row.contains(reversed)) {
-                    int xOffset = row.indexOf(reversed) + startX;
-                    int yOffset = row.indexOf(reversed) + startY;
+                    int xOffset = row.indexOf(reversed) + reversed.length() + startX - 1;
+                    int yOffset = row.indexOf(reversed) + startX;
                     for (int j = 0; j < word.length(); j++) {
-                        y[j] = j + xOffset;
-                        x[j] = yOffset - j;
+                        x[j] = xOffset - j;
+                        y[j] = yOffset + j;
                     }
                     foundWord = true;
                     break;
