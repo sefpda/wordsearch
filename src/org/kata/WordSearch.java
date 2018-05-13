@@ -38,7 +38,15 @@ public class WordSearch {
         if (verticalResult != null) return verticalResult;
         String downDiagonal = DownwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
         if (downDiagonal != null) return downDiagonal;
-        return UpwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
+        String upDiagonal = UpwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
+        if (upDiagonal != null) return upDiagonal;
+        String reverseVertical = ReverseVerticalSearcher.instance().findCoordinates(this.columns, word);
+        if (reverseVertical != null) return reverseVertical;
+        String reverseHorizontal = ReverseHorizontalSearcher.instance().findCoordinates(this.rows, word);
+        if (reverseHorizontal != null) return reverseHorizontal;
+        String reverseDownward = ReverseDownwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
+        if (reverseDownward != null) return reverseDownward;
+        return ReverseUpwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
     }
 
     private void loadPuzzle(String fileName) {

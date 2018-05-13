@@ -58,4 +58,18 @@ public class WordSearchTest {
         assertEquals("BIRD: (0,3),(1,2),(2,1),(3,0)", results.get(2));
     }
 
+    @Test
+    public void findsMixture_IncludingReverse() {
+        String file = "inputfiles/bigolmess.txt";
+        WordSearch searcher = new WordSearch(file);
+        List<String> results = searcher.getResults();
+        assertEquals("BONES: (0,6),(0,7),(0,8),(0,9),(0,10)", results.get(0));
+        assertEquals("KHAN: (5,9),(5,8),(5,7),(5,6)", results.get(1));
+        assertEquals("KIRK: (4,7),(3,7),(2,7),(1,7)", results.get(2));
+        assertEquals("SCOTTY: (0,5),(1,5),(2,5),(3,5),(4,5),(5,5)", results.get(3));
+        assertEquals("SPOCK: (2,1),(3,2),(4,3),(5,4),(6,5)", results.get(4));
+        assertEquals("SULU: (3,3),(2,2),(1,1),(0,0)", results.get(5));
+        assertEquals("UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)", results.get(6));
+    }
+
 }

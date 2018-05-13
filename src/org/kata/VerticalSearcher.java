@@ -16,6 +16,6 @@ public class VerticalSearcher extends AbstractSearcher {
     String findCoordinates(String[] source, String word) {
         boolean xStable = true;
         boolean yStable = false;
-        return findCoordinates(source, word, xStable, yStable);
+        return findCoordinatesAlongStraightLine(source, word, xStable, yStable);
     }
 }

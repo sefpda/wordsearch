@@ -16,6 +16,6 @@ public class HorizontalSearcher extends AbstractSearcher {
     String findCoordinates(String[] source, String word) {
         boolean xStable = false;
         boolean yStable = true;
-        return findCoordinates(source, word, xStable, yStable);
+        return findCoordinatesAlongStraightLine(source, word, xStable, yStable);
     }
 }
