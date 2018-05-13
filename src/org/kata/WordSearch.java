@@ -14,7 +14,11 @@ public class WordSearch {
     private String[] columns;
 
     public static void main(String[] args) {
-        // write your code here
+        String fileName = args[0];
+        List<String> results = new WordSearch(fileName).getResults();
+        for (String result: results) {
+            System.out.println(result);
+        }
     }
 
     public WordSearch(String fileName) {
