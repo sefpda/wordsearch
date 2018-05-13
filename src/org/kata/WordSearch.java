@@ -37,13 +37,19 @@ public class WordSearch {
         if (horizontalResult != null) return horizontalResult;
         String verticalResult = verticalResult(word);
         if (verticalResult != null) return verticalResult;
-        return downwardDiagonal(word);
+        String downDiagonal = downwardDiagonal(word);
+        if (downDiagonal != null) return downDiagonal;
+        return upDiagonal(word);
+    }
+
+    private String upDiagonal(String word) {
+        boolean yUp = true;
+        return findDiagonalCoordinates(this.rows, word, yUp);
     }
 
     private String downwardDiagonal(String word) {
-        boolean xStable = false;
-        boolean yStable = false;
-        return findDiagonalCoordinates(this.rows, word);
+        boolean yUp = false;
+        return findDiagonalCoordinates(this.rows, word, yUp);
     }
 
     private String verticalResult(String word) {
@@ -60,33 +66,62 @@ public class WordSearch {
         return findCoordinates(this.rows, word, xStable, yStable);
     }
 
-    private String findDiagonalCoordinates(String[] rows, String word) {
-        boolean foundWord = false;
-        int[] x = new int[rows.length];
-        int[] y = new int[columns.length];
+    private String findDiagonalCoordinates(String[] rows, String word, boolean yUp) {
+        if (yUp) {
+            boolean foundWord = false;
+            int[] x = new int[rows.length];
+            int[] y = new int[rows.length];
 
-        for (int startY = 0; startY < rows.length - 1; startY++)  {
-            for (int startX = 0; startX < rows.length - 1; startX++) {
-                if (startY > 0 && startX > 0) continue; // after first row only start at x of 0
-                char[] letters = new char[rows.length];
-                for (int i = 0; i < letters.length && startX + i < letters.length && startY + i < letters.length; i++) {
-                    letters[i] = rows[startY + i].charAt(startX + i);
-                }
-                String row = new String(letters);
-                if (row.contains(word)) {
-                    int xOffset = row.indexOf(word) + startX;
-                    int yOffset = row.indexOf(word) + startY;
-                    for (int j = 0; j < word.length(); j++) {
-                        x[j] = j + xOffset;
-                        y[j] = j + yOffset;
+            for (int startY = rows.length - 1; startY > 0; startY--) {
+                for (int startX = 0; startX < rows.length - 1; startX++) {
+                    if (startY < rows.length - 1 && startX > 0) continue; // only go past x 0 for last row
+                    char[] letters = new char[rows.length];
+                    for (int i = 0; i < letters.length && startX + i < letters.length && startY - i > -1; i++) {
+                        letters[i] = rows[startY - i].charAt(startX + i);
                     }
-                    foundWord = true;
-                    break;
+                    String row = new String(letters);
+                    if (row.contains(word)) {
+                        int xOffset = row.indexOf(word) + startX;
+                        int yOffset = row.indexOf(word) + startY;
+                        for (int j = 0; j < word.length(); j++) {
+                            x[j] = j + xOffset;
+                            y[j] = yOffset - j;
+                        }
+                        foundWord = true;
+                        break;
+                    }
                 }
             }
+            if (!foundWord) return null;
+            return generateResult(word, x, y);
+        } else {
+            boolean foundWord = false;
+            int[] x = new int[rows.length];
+            int[] y = new int[rows.length];
+
+            for (int startY = 0; startY < rows.length - 1; startY++) {
+                for (int startX = 0; startX < rows.length - 1; startX++) {
+                    if (startY > 0 && startX > 0) continue; // after first row only start at x of 0
+                    char[] letters = new char[rows.length];
+                    for (int i = 0; i < letters.length && startX + i < letters.length && startY + i < letters.length; i++) {
+                        letters[i] = rows[startY + i].charAt(startX + i);
+                    }
+                    String row = new String(letters);
+                    if (row.contains(word)) {
+                        int xOffset = row.indexOf(word) + startX;
+                        int yOffset = row.indexOf(word) + startY;
+                        for (int j = 0; j < word.length(); j++) {
+                            x[j] = j + xOffset;
+                            y[j] = j + yOffset;
+                        }
+                        foundWord = true;
+                        break;
+                    }
+                }
+            }
+            if (!foundWord) return null;
+            return generateResult(word, x, y);
         }
-        if (!foundWord) return null;
-        return generateResult(word, x, y);
     }
 
     private String findCoordinates(String[] source, String word, boolean xStable, boolean yStable) {

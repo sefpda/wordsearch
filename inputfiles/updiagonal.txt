@@ -1,0 +1,5 @@
+CAT,APE,BIRD
+I,L,T,D
+H,A,R,E
+C,I,P,W
+B,A,O,S

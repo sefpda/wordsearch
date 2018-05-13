@@ -48,4 +48,14 @@ public class WordSearchTest {
         assertEquals("HI: (1,3),(2,4)", results.get(3));
     }
 
+    @Test
+    public void findsUpwardDiagonal() {
+        String file = "inputfiles/updiagonal.txt";
+        WordSearch searcher = new WordSearch(file);
+        List<String> results = searcher.getResults();
+        assertEquals("CAT: (0,2),(1,1),(2,0)", results.get(0));
+        assertEquals("APE: (1,3),(2,2),(3,1)", results.get(1));
+        assertEquals("BIRD: (0,3),(1,2),(2,1),(3,0)", results.get(2));
+    }
+
 }
