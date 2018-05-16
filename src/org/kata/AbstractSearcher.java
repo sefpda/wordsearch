@@ -1,9 +1,9 @@
 package org.kata;
 
-public abstract class AbstractSearcher {
+abstract class AbstractSearcher {
 
-    protected String generateResult(String word, int[] x, int[] y) {
-        if (x.length == 0 || y.length == 0) return word + ": not found in search grid";
+    protected String generateResult(String word, int[] x, int[] y, boolean foundWord) {
+        if (!foundWord) return null;
         StringBuilder result = new StringBuilder(word);
         result.append(": ");
         for (int i = 0; i < word.length(); i++) {
@@ -31,7 +31,7 @@ public abstract class AbstractSearcher {
                 break;
             }
         }
-        return generateResult(word, x, y);
+        return generateResult(word, x, y, foundWord);
     }
 
     protected String findReverseCoordinatesAlongStraightLine(String[] source, String word, boolean xStable, boolean yStable) {
@@ -49,6 +49,6 @@ public abstract class AbstractSearcher {
                 break;
             }
         }
-        return generateResult(word, x, y);
+        return generateResult(word, x, y, foundWord);
     }
 }

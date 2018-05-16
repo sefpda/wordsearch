@@ -1,6 +1,6 @@
 package org.kata;
 
-public class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
+class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
 
     private static ReverseDownwardDiagonalSearcher INSTANCE;
 
@@ -38,6 +38,6 @@ public class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
                 }
             }
         }
-        return generateResult(word, x, y);
+        return generateResult(word, x, y, foundWord);
     }
 }

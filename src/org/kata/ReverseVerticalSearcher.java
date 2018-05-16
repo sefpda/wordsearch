@@ -1,6 +1,6 @@
 package org.kata;
 
-public class ReverseVerticalSearcher extends AbstractSearcher {
+class ReverseVerticalSearcher extends AbstractSearcher {
 
     private static ReverseVerticalSearcher INSTANCE;
 

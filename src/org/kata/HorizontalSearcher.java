@@ -1,6 +1,6 @@
 package org.kata;
 
-public class HorizontalSearcher extends AbstractSearcher {
+class HorizontalSearcher extends AbstractSearcher {
 
     private static HorizontalSearcher INSTANCE;
 

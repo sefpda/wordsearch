@@ -15,6 +15,10 @@ public class WordSearch {
     private String[] columns;
 
     public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("WordSearch requires the path of the file to process");
+            return;
+        }
         String fileName = args[0];
         try {
             List<String> results = new WordSearch(fileName).getResults();
@@ -26,15 +30,19 @@ public class WordSearch {
         }
     }
 
-    public WordSearch(String fileName) { this.fileName = fileName; }
+    WordSearch(String fileName) { this.fileName = fileName; }
 
-    public List<String> getResults() throws IOException {
-        loadPuzzle(fileName);
-
+    List<String> getResults() throws IOException {
+        loadPuzzle(this.fileName);
         List<String> results = new ArrayList<>();
 
         for (String word: this.words) {
-            results.add(coordinates(word));
+            String result = coordinates(word);
+            if (result == null) {
+                results.add(word + ": not found in word grid");
+            } else {
+                results.add(result);
+            }
         }
 
         return results;
@@ -68,6 +76,8 @@ public class WordSearch {
         for (String word: words) {
             if (word.length() < 2) throw new SearchWordFormatException();
         }
+
+        if (inputRows.size() < 2) throw new InvalidGridException(0);
 
         this.rows = new String[inputRows.size()];
         this.columns = new String[inputRows.size()];

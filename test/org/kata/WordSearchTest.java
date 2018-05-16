@@ -98,4 +98,30 @@ public class WordSearchTest {
         Executable methodCall = () -> searcher.getResults();
         assertThrows(SearchWordFormatException.class, methodCall);
     }
+
+    @Test
+    public void rejectsFileWithNoGrid() {
+        String file = "inputfiles/emptygrid.txt";
+        WordSearch searcher = new WordSearch(file);
+        Executable methodCall = () -> searcher.getResults();
+        assertThrows(InvalidGridException.class, methodCall);
+    }
+
+    @Test
+    public void rejectsFileWithGridSmallerThanTwoByTwo() {
+        String file = "inputfiles/onegrid.txt";
+        WordSearch searcher = new WordSearch(file);
+        Executable methodCall = () -> searcher.getResults();
+        assertThrows(InvalidGridException.class, methodCall);
+    }
+
+    @Test
+    public void reportsWordsThatCannotBeFound() throws Exception {
+        String file = "inputfiles/unfound.txt";
+        WordSearch searcher = new WordSearch(file);
+        List<String> results = searcher.getResults();
+        assertEquals("CLUB: not found in word grid", results.get(0));
+        assertEquals("RACKET: not found in word grid", results.get(1));
+        assertEquals("BAT: (0,0),(1,1),(2,2)", results.get(2));
+    }
 }

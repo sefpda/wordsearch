@@ -39,7 +39,7 @@ class UpwardDiagonalSearcher extends AbstractSearcher {
                 }
             }
         }
-        return generateResult(word, x, y);
+        return generateResult(word, x, y, foundWord);
     }
 
 }
