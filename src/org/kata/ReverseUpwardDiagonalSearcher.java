@@ -38,7 +38,6 @@ public class ReverseUpwardDiagonalSearcher extends AbstractSearcher {
                 }
             }
         }
-        if (!foundWord) return null;
         return generateResult(word, x, y);
     }
 }

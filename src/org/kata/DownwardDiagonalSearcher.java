@@ -37,7 +37,6 @@ public class DownwardDiagonalSearcher extends AbstractSearcher {
                 }
             }
         }
-        if (!foundWord) return null;
         return generateResult(word, x, y);
     }
 

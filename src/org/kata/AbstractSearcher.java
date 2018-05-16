@@ -1,7 +1,9 @@
 package org.kata;
 
 public abstract class AbstractSearcher {
+
     protected String generateResult(String word, int[] x, int[] y) {
+        if (x.length == 0 || y.length == 0) return word + ": not found in search grid";
         StringBuilder result = new StringBuilder(word);
         result.append(": ");
         for (int i = 0; i < word.length(); i++) {
@@ -29,7 +31,6 @@ public abstract class AbstractSearcher {
                 break;
             }
         }
-        if (!foundWord) return null;
         return generateResult(word, x, y);
     }
 
@@ -48,7 +49,6 @@ public abstract class AbstractSearcher {
                 break;
             }
         }
-        if (!foundWord) return null;
         return generateResult(word, x, y);
     }
 }
