@@ -1,14 +1,18 @@
 package org.kata;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+
+import java.nio.file.NoSuchFileException;
 import java.util.List;
 
 public class WordSearchTest {
 
     @Test
-    public void findsSingleHorizontalMatchInTinyGrid() {
+    public void findsSingleHorizontalMatchInTinyGrid() throws Exception {
         String file = "inputfiles/tinygrid.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
@@ -16,7 +20,7 @@ public class WordSearchTest {
     }
 
     @Test
-    public void findsMultipleHorizontalMatchesInSmallGrid() {
+    public void findsMultipleHorizontalMatchesInSmallGrid() throws Exception {
         String file = "inputfiles/smallgrid.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
@@ -26,7 +30,7 @@ public class WordSearchTest {
     }
 
     @Test
-    public void findsVerticalMatches() {
+    public void findsVerticalMatches() throws Exception {
         String file = "inputfiles/verticalgrid.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
@@ -37,7 +41,7 @@ public class WordSearchTest {
     }
 
     @Test
-    public void findsDownwardDiagonal() {
+    public void findsDownwardDiagonal() throws Exception {
         String file = "inputfiles/downdiagonal.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
@@ -48,7 +52,7 @@ public class WordSearchTest {
     }
 
     @Test
-    public void findsUpwardDiagonal() {
+    public void findsUpwardDiagonal() throws Exception {
         String file = "inputfiles/updiagonal.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
@@ -58,7 +62,7 @@ public class WordSearchTest {
     }
 
     @Test
-    public void findsMixture_IncludingReverse() {
+    public void findsMixture_IncludingReverse() throws Exception {
         String file = "inputfiles/bigolmess.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
@@ -71,4 +75,27 @@ public class WordSearchTest {
         assertEquals("UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)", results.get(6));
     }
 
+    @Test
+    public void rejectsNonExistantFile() {
+        String file = "inputfiles/filenotfound.txt";
+        WordSearch searcher = new WordSearch(file);
+        Executable methodCall = () -> searcher.getResults();
+        assertThrows(NoSuchFileException.class, methodCall);
+    }
+
+    @Test
+    public void rejectsFileWithMalformedGrid() {
+        String file = "inputfiles/notsquare.txt";
+        WordSearch searcher = new WordSearch(file);
+        Executable methodCall = () -> searcher.getResults();
+        assertThrows(InvalidGridException.class, methodCall);
+    }
+
+    @Test
+    public void rejectsFileWithNoSearchWords() {
+        String file = "inputfiles/nowords.txt";
+        WordSearch searcher = new WordSearch(file);
+        Executable methodCall = () -> searcher.getResults();
+        assertThrows(SearchWordFormatException.class, methodCall);
+    }
 }

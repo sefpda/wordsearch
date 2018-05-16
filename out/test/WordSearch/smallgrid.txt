@@ -1,5 +1,0 @@
-ROLL,DICE,CAP
-R,O,L,L
-X,I,S,T
-B,C,A,P
-D,I,C,E
