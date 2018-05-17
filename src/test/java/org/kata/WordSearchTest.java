@@ -13,7 +13,7 @@ public class WordSearchTest {
 
     @Test
     public void findsSingleHorizontalMatchInTinyGrid() throws Exception {
-        String file = "inputfiles/tinygrid.txt";
+        String file = "src/test/resources/inputfiles/tinygrid.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
         assertEquals("HI: (0,0),(1,0)", results.get(0));
@@ -21,7 +21,7 @@ public class WordSearchTest {
 
     @Test
     public void findsMultipleHorizontalMatchesInSmallGrid() throws Exception {
-        String file = "inputfiles/smallgrid.txt";
+        String file = "src/test/resources/inputfiles/smallgrid.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
         assertEquals("ROLL: (0,0),(1,0),(2,0),(3,0)", results.get(0));
@@ -31,7 +31,7 @@ public class WordSearchTest {
 
     @Test
     public void findsVerticalMatches() throws Exception {
-        String file = "inputfiles/verticalgrid.txt";
+        String file = "src/test/resources/inputfiles/verticalgrid.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
         assertEquals("JOHN: (2,2),(2,3),(2,4),(2,5)", results.get(0));
@@ -42,7 +42,7 @@ public class WordSearchTest {
 
     @Test
     public void findsDownwardDiagonal() throws Exception {
-        String file = "inputfiles/downdiagonal.txt";
+        String file = "src/test/resources/inputfiles/downdiagonal.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
         assertEquals("WHEN: (0,0),(1,1),(2,2),(3,3)", results.get(0));
@@ -53,7 +53,7 @@ public class WordSearchTest {
 
     @Test
     public void findsUpwardDiagonal() throws Exception {
-        String file = "inputfiles/updiagonal.txt";
+        String file = "src/test/resources/inputfiles/updiagonal.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
         assertEquals("CAT: (0,2),(1,1),(2,0)", results.get(0));
@@ -63,7 +63,7 @@ public class WordSearchTest {
 
     @Test
     public void findsMixture_IncludingReverse() throws Exception {
-        String file = "inputfiles/bigolmess.txt";
+        String file = "src/test/resources/inputfiles/bigolmess.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
         assertEquals("BONES: (0,6),(0,7),(0,8),(0,9),(0,10)", results.get(0));
@@ -77,7 +77,7 @@ public class WordSearchTest {
 
     @Test
     public void rejectsNonExistantFile() {
-        String file = "inputfiles/filenotfound.txt";
+        String file = "src/test/resources/inputfiles/filenotfound.txt";
         WordSearch searcher = new WordSearch(file);
         Executable methodCall = () -> searcher.getResults();
         assertThrows(NoSuchFileException.class, methodCall);
@@ -85,7 +85,7 @@ public class WordSearchTest {
 
     @Test
     public void rejectsFileWithMalformedGrid() {
-        String file = "inputfiles/notsquare.txt";
+        String file = "src/test/resources/inputfiles/notsquare.txt";
         WordSearch searcher = new WordSearch(file);
         Executable methodCall = () -> searcher.getResults();
         assertThrows(InvalidGridException.class, methodCall);
@@ -93,7 +93,7 @@ public class WordSearchTest {
 
     @Test
     public void rejectsFileWithNoSearchWords() {
-        String file = "inputfiles/nowords.txt";
+        String file = "src/test/resources/inputfiles/nowords.txt";
         WordSearch searcher = new WordSearch(file);
         Executable methodCall = () -> searcher.getResults();
         assertThrows(SearchWordFormatException.class, methodCall);
@@ -101,7 +101,7 @@ public class WordSearchTest {
 
     @Test
     public void rejectsFileWithNoGrid() {
-        String file = "inputfiles/emptygrid.txt";
+        String file = "src/test/resources/inputfiles/emptygrid.txt";
         WordSearch searcher = new WordSearch(file);
         Executable methodCall = () -> searcher.getResults();
         assertThrows(InvalidGridException.class, methodCall);
@@ -109,7 +109,7 @@ public class WordSearchTest {
 
     @Test
     public void rejectsFileWithGridSmallerThanTwoByTwo() {
-        String file = "inputfiles/onegrid.txt";
+        String file = "src/test/resources/inputfiles/onegrid.txt";
         WordSearch searcher = new WordSearch(file);
         Executable methodCall = () -> searcher.getResults();
         assertThrows(InvalidGridException.class, methodCall);
@@ -117,7 +117,7 @@ public class WordSearchTest {
 
     @Test
     public void reportsWordsThatCannotBeFound() throws Exception {
-        String file = "inputfiles/unfound.txt";
+        String file = "src/test/resources/inputfiles/unfound.txt";
         WordSearch searcher = new WordSearch(file);
         List<String> results = searcher.getResults();
         assertEquals("CLUB: not found in word grid", results.get(0));

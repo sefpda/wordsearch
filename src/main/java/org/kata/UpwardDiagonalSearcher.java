@@ -1,7 +1,5 @@
 package org.kata;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-
 class UpwardDiagonalSearcher extends AbstractSearcher {
 
     private static UpwardDiagonalSearcher INSTANCE;
