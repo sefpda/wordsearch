@@ -49,21 +49,24 @@ public class WordSearch {
     }
 
     private String coordinates(String word) {
+        List<String> results = new ArrayList<String>();
         String horizontalResult = HorizontalSearcher.instance().findCoordinates(this.rows, word);
-        if (horizontalResult != null) return horizontalResult;
+        if (horizontalResult != null) results.add(horizontalResult);
         String verticalResult = VerticalSearcher.instance().findCoordinates(this.columns, word);
-        if (verticalResult != null) return verticalResult;
+        if (verticalResult != null) results.add(verticalResult);
         String downDiagonal = DownwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
-        if (downDiagonal != null) return downDiagonal;
+        if (downDiagonal != null) results.add(downDiagonal);
         String upDiagonal = UpwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
-        if (upDiagonal != null) return upDiagonal;
+        if (upDiagonal != null) results.add(upDiagonal);
         String reverseVertical = ReverseVerticalSearcher.instance().findCoordinates(this.columns, word);
-        if (reverseVertical != null) return reverseVertical;
+        if (reverseVertical != null) results.add(reverseVertical);
         String reverseHorizontal = ReverseHorizontalSearcher.instance().findCoordinates(this.rows, word);
-        if (reverseHorizontal != null) return reverseHorizontal;
+        if (reverseHorizontal != null) results.add(reverseHorizontal);
         String reverseDownward = ReverseDownwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
-        if (reverseDownward != null) return reverseDownward;
-        return ReverseUpwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
+        if (reverseDownward != null) results.add(reverseDownward);
+        String reverseUpward = ReverseUpwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
+        if (reverseUpward != null) results.add(reverseUpward);
+        return results.isEmpty() ? null : results.get(0);
     }
 
     private void loadPuzzle(String fileName) throws IOException {
