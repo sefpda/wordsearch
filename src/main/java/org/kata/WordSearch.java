@@ -50,23 +50,20 @@ public class WordSearch {
 
     private String coordinates(String word) {
         List<String> results = new ArrayList<String>();
-        String horizontalResult = HorizontalSearcher.instance().findCoordinates(this.rows, word);
-        if (horizontalResult != null) results.add(horizontalResult);
-        String verticalResult = VerticalSearcher.instance().findCoordinates(this.columns, word);
-        if (verticalResult != null) results.add(verticalResult);
-        String downDiagonal = DownwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
-        if (downDiagonal != null) results.add(downDiagonal);
-        String upDiagonal = UpwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
-        if (upDiagonal != null) results.add(upDiagonal);
-        String reverseVertical = ReverseVerticalSearcher.instance().findCoordinates(this.columns, word);
-        if (reverseVertical != null) results.add(reverseVertical);
-        String reverseHorizontal = ReverseHorizontalSearcher.instance().findCoordinates(this.rows, word);
-        if (reverseHorizontal != null) results.add(reverseHorizontal);
-        String reverseDownward = ReverseDownwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
-        if (reverseDownward != null) results.add(reverseDownward);
-        String reverseUpward = ReverseUpwardDiagonalSearcher.instance().findCoordinates(this.rows, word);
-        if (reverseUpward != null) results.add(reverseUpward);
+        addResults(results, HorizontalSearcher.instance(), this.rows, word);
+        addResults(results, VerticalSearcher.instance(), this.columns, word);
+        addResults(results, DownwardDiagonalSearcher.instance(), this.rows, word);
+        addResults(results, UpwardDiagonalSearcher.instance(), this.rows, word);
+        addResults(results, ReverseVerticalSearcher.instance(), this.columns, word);
+        addResults(results, ReverseHorizontalSearcher.instance(), this.rows, word);
+        addResults(results, ReverseDownwardDiagonalSearcher.instance(), this.rows, word);
+        addResults(results, ReverseUpwardDiagonalSearcher.instance(), this.rows, word);
         return results.isEmpty() ? null : results.get(0);
+    }
+
+    private void addResults(List<String> allResults, AbstractSearcher searcher, String[] grid, String word) {
+        String currentSearchResult = searcher.findCoordinates(grid, word);
+        if (currentSearchResult != null) allResults.add(currentSearchResult);
     }
 
     private void loadPuzzle(String fileName) throws IOException {

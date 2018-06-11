@@ -51,4 +51,6 @@ abstract class AbstractSearcher {
         }
         return generateResult(word, x, y, foundWord);
     }
+
+    abstract String findCoordinates(String[] rows, String word);
 }
