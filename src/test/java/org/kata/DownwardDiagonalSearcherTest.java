@@ -13,8 +13,8 @@ public class DownwardDiagonalSearcherTest {
             "SUN",
             "TON",
         };
-        String result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "RUN");
-        assertEquals("RUN: (0,0),(1,1),(2,2)", result);
+        String[] result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "RUN");
+        assertEquals("RUN: (0,0),(1,1),(2,2)", result[0]);
     }
 
     @Test
@@ -25,8 +25,8 @@ public class DownwardDiagonalSearcherTest {
             "ROOT",
             "COPM"
         };
-        String result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TOM");
-        assertEquals("TOM: (1,1),(2,2),(3,3)", result);
+        String[] result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TOM");
+        assertEquals("TOM: (1,1),(2,2),(3,3)", result[0]);
     }
 
     @Test
@@ -36,8 +36,8 @@ public class DownwardDiagonalSearcherTest {
             "RUN",
             "AQB",
         };
-        String result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "ON");
-        assertEquals("ON: (1,0),(2,1)", result);
+        String[] result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "ON");
+        assertEquals("ON: (1,0),(2,1)", result[0]);
     }
 
     @Test
@@ -49,8 +49,8 @@ public class DownwardDiagonalSearcherTest {
             "NVPTR",
             "YPIJZ"
         };
-        String result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TOR");
-        assertEquals("TOR: (2,1),(3,2),(4,3)", result);
+        String[] result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TOR");
+        assertEquals("TOR: (2,1),(3,2),(4,3)", result[0]);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class DownwardDiagonalSearcherTest {
             "TXP",
             "AOI"
         };
-        String result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TO");
-        assertEquals("TO: (0,1),(1,2)", result);
+        String[] result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TO");
+        assertEquals("TO: (0,1),(1,2)", result[0]);
     }
 }

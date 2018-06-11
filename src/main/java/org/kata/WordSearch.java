@@ -62,8 +62,13 @@ public class WordSearch {
     }
 
     private void addResults(List<String> allResults, AbstractSearcher searcher, String[] grid, String word) {
-        String currentSearchResult = searcher.findCoordinates(grid, word);
-        if (currentSearchResult != null) allResults.add(currentSearchResult);
+        String[] currentSearchResult = searcher.findCoordinates(grid, word);
+        if (currentSearchResult != null) {
+            for (String result :
+                    currentSearchResult) {
+                if (result != null) allResults.add(result);
+            }
+        }
     }
 
     private void loadPuzzle(String fileName) throws IOException {

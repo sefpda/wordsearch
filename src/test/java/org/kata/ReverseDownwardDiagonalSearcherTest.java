@@ -13,8 +13,8 @@ public class ReverseDownwardDiagonalSearcherTest {
                 "BOT",
                 "HOB"
         };
-        String result = ReverseDownwardDiagonalSearcher.instance().findCoordinates(rows, "BOP");
-        assertEquals("BOP: (2,2),(1,1),(0,0)", result);
+        String[] result = ReverseDownwardDiagonalSearcher.instance().findCoordinates(rows, "BOP");
+        assertEquals("BOP: (2,2),(1,1),(0,0)", result[0]);
     }
 
     @Test
@@ -27,8 +27,8 @@ public class ReverseDownwardDiagonalSearcherTest {
                 "NCPORW",
                 "ZCUMSA"
         };
-        String result = ReverseDownwardDiagonalSearcher.instance().findCoordinates(rows, "TOR");
-        assertEquals("TOR: (4,3),(3,2),(2,1)", result);
+        String[] result = ReverseDownwardDiagonalSearcher.instance().findCoordinates(rows, "TOR");
+        assertEquals("TOR: (4,3),(3,2),(2,1)", result[0]);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class ReverseDownwardDiagonalSearcherTest {
                 "YOR",
                 "ABE"
         };
-        String result = ReverseDownwardDiagonalSearcher.instance().findCoordinates(rows, "BY");
-        assertEquals("BY: (1,2),(0,1)", result);
+        String[] result = ReverseDownwardDiagonalSearcher.instance().findCoordinates(rows, "BY");
+        assertEquals("BY: (1,2),(0,1)", result[0]);
     }
 }

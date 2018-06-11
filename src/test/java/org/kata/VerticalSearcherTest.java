@@ -12,8 +12,8 @@ public class VerticalSearcherTest {
             "RBR",
             "OCN"
         };
-        String result = VerticalSearcher.instance().findCoordinates(columns, "HAT");
-        assertEquals("HAT: (0,0),(0,1),(0,2)", result);
+        String[] result = VerticalSearcher.instance().findCoordinates(columns, "HAT");
+        assertEquals("HAT: (0,0),(0,1),(0,2)", result[0]);
     }
 
     @Test
@@ -25,8 +25,8 @@ public class VerticalSearcherTest {
             "MONTY",
             "MAPLE"
         };
-        String result = VerticalSearcher.instance().findCoordinates(columns, "CORN");
-        assertEquals("CORN: (0,1),(0,2),(0,3),(0,4)", result);
+        String[] result = VerticalSearcher.instance().findCoordinates(columns, "CORN");
+        assertEquals("CORN: (0,1),(0,2),(0,3),(0,4)", result[0]);
     }
 
     @Test
@@ -37,8 +37,8 @@ public class VerticalSearcherTest {
             "QATL",
             "BMDS"
         };
-        String result = VerticalSearcher.instance().findCoordinates(columns, "AT");
-        assertEquals("AT: (2,1),(2,2)", result);
+        String[] result = VerticalSearcher.instance().findCoordinates(columns, "AT");
+        assertEquals("AT: (2,1),(2,2)", result[0]);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class VerticalSearcherTest {
             "YPL",
             "DOH"
         };
-        String result = VerticalSearcher.instance().findCoordinates(columns, "OH");
-        assertEquals("OH: (2,1),(2,2)", result);
+        String[] result = VerticalSearcher.instance().findCoordinates(columns, "OH");
+        assertEquals("OH: (2,1),(2,2)", result[0]);
     }
 }

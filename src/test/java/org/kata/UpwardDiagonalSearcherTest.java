@@ -13,8 +13,8 @@ public class UpwardDiagonalSearcherTest {
             "UOP",
             "TLM"
         };
-        String result = UpwardDiagonalSearcher.instance().findCoordinates(rows, "TOY");
-        assertEquals("TOY: (0,2),(1,1),(2,0)", result);
+        String[] result = UpwardDiagonalSearcher.instance().findCoordinates(rows, "TOY");
+        assertEquals("TOY: (0,2),(1,1),(2,0)", result[0]);
     }
 
     @Test
@@ -24,8 +24,8 @@ public class UpwardDiagonalSearcherTest {
             "WNB",
             "XUG"
         };
-        String result = UpwardDiagonalSearcher.instance().findCoordinates(rows, "NO");
-        assertEquals("NO: (1,1),(2,0)", result);
+        String[] result = UpwardDiagonalSearcher.instance().findCoordinates(rows, "NO");
+        assertEquals("NO: (1,1),(2,0)", result[0]);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class UpwardDiagonalSearcherTest {
                 "TMV",
                 "PRT"
         };
-        String result = UpwardDiagonalSearcher.instance().findCoordinates(rows, "TO");
-        assertEquals("TO: (0,1),(1,0)", result);
+        String[] result = UpwardDiagonalSearcher.instance().findCoordinates(rows, "TO");
+        assertEquals("TO: (0,1),(1,0)", result[0]);
     }
 }

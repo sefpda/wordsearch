@@ -13,8 +13,8 @@ public class ReverseHorizontalSearcherTest {
                 "TOW",
                 "MAT"
         };
-        String result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "FAN");
-        assertEquals("FAN: (2,0),(1,0),(0,0)", result);
+        String[] result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "FAN");
+        assertEquals("FAN: (2,0),(1,0),(0,0)", result[0]);
     }
 
     @Test
@@ -26,8 +26,8 @@ public class ReverseHorizontalSearcherTest {
                 "PLBOQ",
                 "ZBGEN"
         };
-        String result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "TON");
-        assertEquals("TON: (3,2),(2,2),(1,2)", result);
+        String[] result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "TON");
+        assertEquals("TON: (3,2),(2,2),(1,2)", result[0]);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class ReverseHorizontalSearcherTest {
                 "MAN",
                 "ZIH"
         };
-        String result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "HI");
-        assertEquals("HI: (2,2),(1,2)", result);
+        String[] result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "HI");
+        assertEquals("HI: (2,2),(1,2)", result[0]);
     }
 }

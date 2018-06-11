@@ -13,8 +13,8 @@ public class ReverseUpwardDiagonalSearcherTest {
                 "AOM",
                 "TOP"
         };
-        String result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "BOT");
-        assertEquals("BOT: (2,0),(1,1),(0,2)", result);
+        String[] result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "BOT");
+        assertEquals("BOT: (2,0),(1,1),(0,2)", result[0]);
     }
 
     @Test
@@ -27,8 +27,8 @@ public class ReverseUpwardDiagonalSearcherTest {
                 "NQREDC",
                 "ZXWPOL"
         };
-        String result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "FOR");
-        assertEquals("FOR: (4,2),(3,3),(2,4)", result);
+        String[] result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "FOR");
+        assertEquals("FOR: (4,2),(3,3),(2,4)", result[0]);
     }
 
     @Test
@@ -40,8 +40,8 @@ public class ReverseUpwardDiagonalSearcherTest {
                 "IOPNJ",
                 "UPJLN"
         };
-        String result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "DOG");
-        assertEquals("DOG: (2,0),(1,1),(0,2)", result);
+        String[] result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "DOG");
+        assertEquals("DOG: (2,0),(1,1),(0,2)", result[0]);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class ReverseUpwardDiagonalSearcherTest {
                 "WEO",
                 "ANT"
         };
-        String result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "ON");
-        assertEquals("ON: (2,1),(1,2)", result);
+        String[] result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "ON");
+        assertEquals("ON: (2,1),(1,2)", result[0]);
     }
 }

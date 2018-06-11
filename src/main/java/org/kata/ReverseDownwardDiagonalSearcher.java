@@ -13,7 +13,7 @@ class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
         return INSTANCE;
     }
 
-    String findCoordinates(String[] rows, String word) {
+    String[] findCoordinates(String[] rows, String word) {
         boolean foundWord = false;
         int[] x = new int[rows.length];
         int[] y = new int[rows.length];
@@ -38,6 +38,6 @@ class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
                 }
             }
         }
-        return generateResult(word, x, y, foundWord);
+        return new String[]{generateResult(word, x, y, foundWord)};
     }
 }

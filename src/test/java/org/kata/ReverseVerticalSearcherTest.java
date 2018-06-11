@@ -13,8 +13,8 @@ public class ReverseVerticalSearcherTest {
                 "LEE",
                 "LWO"
         };
-        String result = ReverseVerticalSearcher.instance().findCoordinates(columns, "CAT");
-        assertEquals("CAT: (0,2),(0,1),(0,0)", result);
+        String[] result = ReverseVerticalSearcher.instance().findCoordinates(columns, "CAT");
+        assertEquals("CAT: (0,2),(0,1),(0,0)", result[0]);
     }
 
     @Test
@@ -26,8 +26,8 @@ public class ReverseVerticalSearcherTest {
                 "YPATS",
                 "CNRWZ"
         };
-        String result = ReverseVerticalSearcher.instance().findCoordinates(columns, "TAP");
-        assertEquals("TAP: (3,3),(3,2),(3,1)", result);
+        String[] result = ReverseVerticalSearcher.instance().findCoordinates(columns, "TAP");
+        assertEquals("TAP: (3,3),(3,2),(3,1)", result[0]);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class ReverseVerticalSearcherTest {
                 "NAV",
                 "BAC"
         };
-        String result = ReverseVerticalSearcher.instance().findCoordinates(columns, "CAB");
-        assertEquals("CAB: (2,2),(2,1),(2,0)", result);
+        String[] result = ReverseVerticalSearcher.instance().findCoordinates(columns, "CAB");
+        assertEquals("CAB: (2,2),(2,1),(2,0)", result[0]);
     }
 }
