@@ -20,23 +20,6 @@ abstract class AbstractSearcher {
         return result.toString();
     }
 
-    protected String findCoordinatesAlongStraightLine(String[] source, String word, boolean xStable, boolean yStable) {
-        boolean foundWord = false;
-        int[] x = new int[source.length];
-        int[] y = new int[source.length];
-        for (int i = 0; i < source.length; i++) {
-            if (source[i].contains(word)) {
-                foundWord = true;
-                for (int j = 0; j < word.length(); j++) {
-                    x[j] = xStable ? i : source[i].indexOf(word) + j;
-                    y[j] = yStable ? i : source[i].indexOf(word) + j;
-                }
-                break;
-            }
-        }
-        return generateResult(word, x, y, foundWord);
-    }
-
     protected String[] findMultipleCoordinatesAlongStraightLine(String[] source, String word, boolean xStable, boolean yStable) {
         int[] x = new int[source.length];
         int[] y = new int[source.length];
