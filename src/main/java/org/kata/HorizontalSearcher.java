@@ -16,6 +16,6 @@ class HorizontalSearcher extends AbstractSearcher {
     String[] findCoordinates(String[] source, String word) {
         boolean xStable = false;
         boolean yStable = true;
-        return new String[]{findCoordinatesAlongStraightLine(source, word, xStable, yStable)};
+        return findMultipleCoordinatesAlongStraightLine(source, word, xStable, yStable);
     }
 }

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class HorizontalSearcherTest {
 
     @Test
-    public void findsWordStartingOnOrigin() {
+    public void findsWordStartingOnOrigin() throws Exception {
         String[] rows = {
             "WEZ",
             "UGM",
@@ -18,7 +18,7 @@ public class HorizontalSearcherTest {
     }
 
     @Test
-    public void findsWordStartingInMiddle() {
+    public void findsWordStartingInMiddle() throws Exception {
         String[] rows = {
             "SOHEM",
             "RZNMQ",
@@ -31,7 +31,7 @@ public class HorizontalSearcherTest {
     }
 
     @Test
-    public void findsWordAtEndOfLastRow() {
+    public void findsWordAtEndOfLastRow() throws Exception {
         String[] rows = {
             "EWI",
             "RIV",
@@ -39,5 +39,18 @@ public class HorizontalSearcherTest {
         };
         String[] result = HorizontalSearcher.instance().findCoordinates(rows, "UP");
         assertEquals("UP: (1,2),(2,2)", result[0]);
+    }
+
+    @Test
+    public void findsMultipleOccurances() throws Exception {
+        String[] rows = {
+            "ONE",
+            "TON",
+            "OON"
+        };
+        String[] results = HorizontalSearcher.instance().findCoordinates(rows, "ON");
+        assertEquals("ON: (0,0),(1,0)", results[0]);
+        assertEquals("ON: (1,1),(2,1)", results[1]);
+        assertEquals("ON: (1,2),(2,2)", results[2]);
     }
 }
