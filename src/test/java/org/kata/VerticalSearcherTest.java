@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class VerticalSearcherTest {
 
     @Test
-    public void findsWordStartingAtOrigin() {
+    public void findsWordStartingAtOrigin() throws Exception {
         String[] columns = {
             "HAT",
             "RBR",
@@ -17,7 +17,7 @@ public class VerticalSearcherTest {
     }
 
     @Test
-    public void findsWordStartingPartwayInFirstColumn() {
+    public void findsWordStartingPartwayInFirstColumn() throws Exception {
         String[] columns = {
             "ACORN",
             "PARTY",
@@ -30,7 +30,7 @@ public class VerticalSearcherTest {
     }
 
     @Test
-    public void findsWordPartwaryInMiddleColumn() {
+    public void findsWordPartwaryInMiddleColumn() throws Exception {
         String[] columns = {
             "EWNB",
             "MUPZ",
@@ -42,7 +42,7 @@ public class VerticalSearcherTest {
     }
 
     @Test
-    public void findsWordAtEndOfLastColumn() {
+    public void findsWordAtEndOfLastColumn() throws Exception {
         String[] columns = {
             "ZRE",
             "YPL",
@@ -50,5 +50,17 @@ public class VerticalSearcherTest {
         };
         String[] result = VerticalSearcher.instance().findCoordinates(columns, "OH");
         assertEquals("OH: (2,1),(2,2)", result[0]);
+    }
+
+    @Test
+    public void findsMultipleMatches() throws Exception {
+        String[] columns = {
+                "TOT",
+                "ATO",
+                "BPW"
+        };
+        String[] results = VerticalSearcher.instance().findCoordinates(columns, "TO");
+        assertEquals("TO: (0,0),(0,1)", results[0]);
+        assertEquals("TO: (1,1),(1,2)", results[1]);
     }
 }
