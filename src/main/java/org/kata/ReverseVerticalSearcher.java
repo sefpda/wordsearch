@@ -16,6 +16,6 @@ class ReverseVerticalSearcher extends AbstractSearcher {
     String[] findCoordinates(String[] source, String word) {
         boolean xStable = true;
         boolean yStable = false;
-        return new String[]{findReverseCoordinatesAlongStraightLine(source, word, xStable, yStable)};
+        return findReverseCoordinatesAlongStraightLine(source, word, xStable, yStable);
     }
 }
