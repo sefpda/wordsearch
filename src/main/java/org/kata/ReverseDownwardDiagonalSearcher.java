@@ -1,5 +1,8 @@
 package org.kata;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
 
     private static ReverseDownwardDiagonalSearcher INSTANCE;
@@ -14,9 +17,9 @@ class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
     }
 
     String[] findCoordinates(String[] rows, String word) {
-        boolean foundWord = false;
         int[] x = new int[rows.length];
         int[] y = new int[rows.length];
+        List<String> results = new ArrayList<String>();
         String reversed = new StringBuilder(word).reverse().toString();
         for (int startY = 0; startY < rows.length - 1; startY++) {
             for (int startX = 0; startX < rows.length - 1; startX++) {
@@ -33,11 +36,10 @@ class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
                         x[j] = xOffset - j;
                         y[j] = yOffset - j;
                     }
-                    foundWord = true;
-                    break;
+                    results.add(generateResult(word, x, y, true));
                 }
             }
         }
-        return new String[]{generateResult(word, x, y, foundWord)};
+        return results.toArray(new String[0]);
     }
 }
