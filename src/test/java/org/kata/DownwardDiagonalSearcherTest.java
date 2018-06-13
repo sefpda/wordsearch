@@ -2,6 +2,8 @@ package org.kata;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.ExecutionException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DownwardDiagonalSearcherTest {
@@ -62,5 +64,17 @@ public class DownwardDiagonalSearcherTest {
         };
         String[] result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TO");
         assertEquals("TO: (0,1),(1,2)", result[0]);
+    }
+
+    @Test
+    public void findsMultipleMatches() throws Exception {
+        String[] rows = {
+            "QOT",
+            "ONH",
+            "YHM"
+        };
+        String[] results = DownwardDiagonalSearcher.instance().findCoordinates(rows, "OH");
+        assertEquals("OH: (1,0),(2,1)", results[0]);
+        assertEquals("OH: (0,1),(1,2)", results[1]);
     }
 }

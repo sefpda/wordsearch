@@ -1,5 +1,8 @@
 package org.kata;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class DownwardDiagonalSearcher extends AbstractSearcher {
 
     private static DownwardDiagonalSearcher INSTANCE;
@@ -14,9 +17,9 @@ class DownwardDiagonalSearcher extends AbstractSearcher {
     }
 
     String[] findCoordinates(String[] rows, String word) {
-        boolean foundWord = false;
         int[] x = new int[rows.length];
         int[] y = new int[rows.length];
+        List<String> results = new ArrayList<String>();
         for (int startY = 0; startY < rows.length - 1; startY++) {
             for (int startX = 0; startX < rows.length - 1; startX++) {
                 if (startY > 0 && startX > 0) continue; // after first row only start at x of 0
@@ -32,12 +35,11 @@ class DownwardDiagonalSearcher extends AbstractSearcher {
                         x[j] = j + xOffset;
                         y[j] = j + yOffset;
                     }
-                    foundWord = true;
-                    break;
+                    results.add(generateResult(word, x, y, true));
                 }
             }
         }
-        return new String[] { generateResult(word, x, y, foundWord) };
+        return results.toArray(new String[0]);
     }
 
 }
