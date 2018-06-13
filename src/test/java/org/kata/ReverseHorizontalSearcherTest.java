@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ReverseHorizontalSearcherTest {
 
     @Test
-    public void findsWordEndingAtOrigin() {
+    public void findsWordEndingAtOrigin() throws Exception {
         String[] rows = {
                 "NAF",
                 "TOW",
@@ -18,7 +18,7 @@ public class ReverseHorizontalSearcherTest {
     }
 
     @Test
-    public void findsWordInMidstOfGrid() {
+    public void findsWordInMidstOfGrid() throws Exception {
         String[] rows = {
                 "SYPBX",
                 "QWERV",
@@ -31,7 +31,7 @@ public class ReverseHorizontalSearcherTest {
     }
 
     @Test
-    public void findsWordOnLastLine() {
+    public void findsWordOnLastLine() throws Exception {
         String[] rows = {
                 "GOT",
                 "MAN",
@@ -39,5 +39,18 @@ public class ReverseHorizontalSearcherTest {
         };
         String[] result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "HI");
         assertEquals("HI: (2,2),(1,2)", result[0]);
+    }
+
+    @Test
+    public void findsMultipleMatches() throws Exception {
+        String[] rows = {
+                "IPO",
+                "UIP",
+                "ERN"
+        };
+        String[] results = ReverseHorizontalSearcher.instance().findCoordinates(rows, "PI");
+        assertEquals("PI: (1,0),(0,0)", results[0]);
+        assertEquals("PI: (2,1),(1,1)", results[1]);
+
     }
 }
