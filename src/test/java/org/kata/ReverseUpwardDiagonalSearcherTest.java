@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ReverseUpwardDiagonalSearcherTest {
 
     @Test
-    public void findsAlongLongestSlant_startsOnBottomOfFirstColumn() {
+    public void findsAlongLongestSlant_startsOnBottomOfFirstColumn() throws Exception {
         String[] rows = {
                 "NUB",
                 "AOM",
@@ -18,7 +18,7 @@ public class ReverseUpwardDiagonalSearcherTest {
     }
 
     @Test
-    public void findsOnShortSlant_inMidstOfGrid() {
+    public void findsOnShortSlant_inMidstOfGrid() throws Exception {
         String[] rows = {
                 "NSFHOL",
                 "NWOBUA",
@@ -32,7 +32,7 @@ public class ReverseUpwardDiagonalSearcherTest {
     }
 
     @Test
-    public void findsOnShortSlant_startsOnTopRow() {
+    public void findsOnShortSlant_startsOnTopRow() throws Exception {
         String[] rows = {
                 "ABDDE",
                 "QOERT",
@@ -45,7 +45,7 @@ public class ReverseUpwardDiagonalSearcherTest {
     }
 
     @Test
-    public void findsOnShortSlant_endsOnBottom() {
+    public void findsOnShortSlant_endsOnBottom() throws Exception {
         String[] rows = new String[] {
                 "JOI",
                 "WEO",
@@ -53,5 +53,17 @@ public class ReverseUpwardDiagonalSearcherTest {
         };
         String[] result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "ON");
         assertEquals("ON: (2,1),(1,2)", result[0]);
+    }
+
+    @Test
+    public void findsMultipleMatches() throws Exception {
+        String[] rows = new String[] {
+                "MTI",
+                "OPT",
+                "NOQ"
+        };
+        String[] results = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "TO");
+        assertEquals("TO: (2,1),(1,2)", results[0]);
+        assertEquals("TO: (1,0),(0,1)", results[1]);
     }
 }
