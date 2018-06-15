@@ -6,18 +6,7 @@ import java.util.List;
 abstract class AbstractSearcher {
 
     protected String generateResult(String word, int[] x, int[] y, boolean foundWord) {
-        if (!foundWord) return null;
-        StringBuilder result = new StringBuilder(word);
-        result.append(": ");
-        for (int i = 0; i < word.length(); i++) {
-            if (i > 0) result.append(",");
-            result.append("(");
-            result.append(x[i]);
-            result.append(",");
-            result.append(y[i]);
-            result.append(")");
-        }
-        return result.toString();
+        return new Result(word, x, y).text();
     }
 
     protected String[] findMultipleCoordinatesAlongStraightLine(String[] source, String word, boolean xStable, boolean yStable) {
