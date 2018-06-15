@@ -24,7 +24,7 @@ public class Result {
     }
 
     private void appendCoordinates(StringBuilder r) {
-        for(int i = 0; i < x.length; i++) {
+        for(int i = 0; i < word.length(); i++) {
             if (i > 0) r.append(",");
             r.append("(");
             r.append(x[i]);

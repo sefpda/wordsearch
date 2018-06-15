@@ -21,4 +21,13 @@ public class ResultTest {
         Result result = new Result(word, new int[0], new int[0]);
         assertEquals("BAR: not found in word grid", result.text());
     }
+
+    @Test
+    public void coordinatesConstrainedByWord() throws Exception {
+        String word = "EYE";
+        int[] x = new int[]{ 1, 1, 1, 1 };
+        int[] y = new int[]{ 0, 1, 2, 3 };
+        Result result = new Result(word, x, y);
+        assertEquals("EYE: (1,0),(1,1),(1,2)", result.text());
+    }
 }
