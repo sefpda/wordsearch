@@ -6,15 +6,24 @@ public class Result {
     private final int[] x;
     private final int[] y;
 
-    public Result(String word, int[] x, int[] y) {
+    Result(String word, int[] x, int[] y) {
         this.word = word;
         this.x = x;
         this.y = y;
     }
 
-    public String text() {
+    String text() {
         StringBuilder r = new StringBuilder(this.word);
         r.append(": ");
+        if (x.length > 0) {
+            appendCoordinates(r);
+        } else {
+            r.append("not found in word grid");
+        }
+        return r.toString();
+    }
+
+    private void appendCoordinates(StringBuilder r) {
         for(int i = 0; i < x.length; i++) {
             if (i > 0) r.append(",");
             r.append("(");
@@ -23,6 +32,5 @@ public class Result {
             r.append(y[i]);
             r.append(")");
         }
-        return r.toString();
     }
 }

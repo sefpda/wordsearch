@@ -14,4 +14,11 @@ public class ResultTest {
         Result result = new Result(word, x, y);
         assertEquals("FOO: (1,2),(2,2),(3,2)", result.text());
     }
+
+    @Test
+    public void handlesMissingResults() throws Exception {
+        String word = "BAR";
+        Result result = new Result(word, new int[0], new int[0]);
+        assertEquals("BAR: not found in word grid", result.text());
+    }
 }
