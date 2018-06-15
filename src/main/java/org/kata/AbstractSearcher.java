@@ -5,10 +5,6 @@ import java.util.List;
 
 abstract class AbstractSearcher {
 
-    protected String generateResult(String word, int[] x, int[] y, boolean foundWord) {
-        return new Result(word, x, y).text();
-    }
-
     protected String[] findMultipleCoordinatesAlongStraightLine(String[] source, String word, boolean xStable, boolean yStable) {
         int[] x = new int[source.length];
         int[] y = new int[source.length];
@@ -19,7 +15,7 @@ abstract class AbstractSearcher {
                     x[j] = xStable ? i : source[i].indexOf(word) + j;
                     y[j] = yStable ? i : source[i].indexOf(word) + j;
                 }
-                results.add(generateResult(word, x, y, true));
+                results.add(new Result(word, x, y).text());
             }
         }
         return results.toArray(new String[0]);
@@ -36,7 +32,7 @@ abstract class AbstractSearcher {
                     x[j] = xStable ? i : source[i].indexOf(reversed) + reversed.length() - 1 - j;
                     y[j] = yStable ? i : source[i].indexOf(reversed) + reversed.length() - 1 - j;
                 }
-                results.add(generateResult(word, x, y, true));
+                results.add(new Result(word, x, y).text());
             }
         }
         return results.toArray(new String[0]);

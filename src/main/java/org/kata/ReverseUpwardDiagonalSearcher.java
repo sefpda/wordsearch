@@ -36,7 +36,7 @@ class ReverseUpwardDiagonalSearcher extends AbstractSearcher {
                         x[j] = xOffset - j;
                         y[j] = yOffset + j;
                     }
-                    results.add(generateResult(word, x, y, true));
+                    results.add(new Result(word, x, y).text());
                 }
             }
         }

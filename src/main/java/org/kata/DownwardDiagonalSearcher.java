@@ -35,7 +35,7 @@ class DownwardDiagonalSearcher extends AbstractSearcher {
                         x[j] = j + xOffset;
                         y[j] = j + yOffset;
                     }
-                    results.add(generateResult(word, x, y, true));
+                    results.add(new Result(word, x, y).text());
                 }
             }
         }
