@@ -2,6 +2,8 @@ package org.kata;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReverseVerticalSearcherTest {
@@ -13,8 +15,8 @@ public class ReverseVerticalSearcherTest {
                 "LEE",
                 "LWO"
         };
-        String[] result = ReverseVerticalSearcher.instance().findCoordinates(columns, "CAT");
-        assertEquals("CAT: (0,2),(0,1),(0,0)", result[0]);
+        List<Result> result = ReverseVerticalSearcher.instance().findCoordinates(columns, "CAT");
+        assertEquals("CAT: (0,2),(0,1),(0,0)", result.get(0).text());
     }
 
     @Test
@@ -26,8 +28,8 @@ public class ReverseVerticalSearcherTest {
                 "YPATS",
                 "CNRWZ"
         };
-        String[] result = ReverseVerticalSearcher.instance().findCoordinates(columns, "TAP");
-        assertEquals("TAP: (3,3),(3,2),(3,1)", result[0]);
+        List<Result> result = ReverseVerticalSearcher.instance().findCoordinates(columns, "TAP");
+        assertEquals("TAP: (3,3),(3,2),(3,1)", result.get(0).text());
     }
 
     @Test
@@ -37,8 +39,8 @@ public class ReverseVerticalSearcherTest {
                 "NAV",
                 "BAC"
         };
-        String[] result = ReverseVerticalSearcher.instance().findCoordinates(columns, "CAB");
-        assertEquals("CAB: (2,2),(2,1),(2,0)", result[0]);
+        List<Result> result = ReverseVerticalSearcher.instance().findCoordinates(columns, "CAB");
+        assertEquals("CAB: (2,2),(2,1),(2,0)", result.get(0).text());
     }
 
     @Test
@@ -48,9 +50,9 @@ public class ReverseVerticalSearcherTest {
                 "OPU",
                 "PUQ"
         };
-        String[] results = ReverseVerticalSearcher.instance().findCoordinates(columns, "UP");
-        assertEquals("UP: (0,1),(0,0)", results[0]);
-        assertEquals("UP: (1,2),(1,1)", results[1]);
-        assertEquals("UP: (2,1),(2,0)", results[2]);
+        List<Result> results = ReverseVerticalSearcher.instance().findCoordinates(columns, "UP");
+        assertEquals("UP: (0,1),(0,0)", results.get(0).text());
+        assertEquals("UP: (1,2),(1,1)", results.get(1).text());
+        assertEquals("UP: (2,1),(2,0)", results.get(2).text());
     }
 }

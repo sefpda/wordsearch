@@ -5,26 +5,28 @@ import java.util.List;
 
 abstract class AbstractSearcher {
 
-    protected String[] findMultipleCoordinatesAlongStraightLine(String[] source, String word, boolean xStable, boolean yStable) {
+    protected List<Result> findMultipleCoordinatesAlongStraightLine(String[] source, String word, boolean xStable, boolean yStable) {
         int[] x = new int[source.length];
         int[] y = new int[source.length];
-        List<String> results = new ArrayList<String>();
+        List<Result> results = new ArrayList<Result>();
         for (int i = 0; i < source.length; i++) {
             if (source[i].contains(word)) {
                 for (int j = 0; j < word.length(); j++) {
                     x[j] = xStable ? i : source[i].indexOf(word) + j;
                     y[j] = yStable ? i : source[i].indexOf(word) + j;
                 }
-                results.add(new Result(word, x, y).text());
+                results.add(new Result(word, x, y));
+                x = new int[source.length];
+                y = new int[source.length];
             }
         }
-        return results.toArray(new String[0]);
+        return results;
     }
 
-    protected String[] findReverseCoordinatesAlongStraightLine(String[] source, String word, boolean xStable, boolean yStable) {
+    protected List<Result> findReverseCoordinatesAlongStraightLine(String[] source, String word, boolean xStable, boolean yStable) {
         int[] x = new int[source.length];
         int[] y = new int[source.length];
-        List<String> results = new ArrayList<String>();
+        List<Result> results = new ArrayList<Result>();
         String reversed = new StringBuilder(word).reverse().toString();
         for (int i = 0; i < source.length; i++) {
             if (source[i].contains(reversed)) {
@@ -32,11 +34,13 @@ abstract class AbstractSearcher {
                     x[j] = xStable ? i : source[i].indexOf(reversed) + reversed.length() - 1 - j;
                     y[j] = yStable ? i : source[i].indexOf(reversed) + reversed.length() - 1 - j;
                 }
-                results.add(new Result(word, x, y).text());
+                results.add(new Result(word, x, y));
+                x = new int[source.length];
+                y = new int[source.length];
             }
         }
-        return results.toArray(new String[0]);
+        return results;
     }
 
-    abstract String[] findCoordinates(String[] rows, String word);
+    abstract List<Result> findCoordinates(String[] rows, String word);
 }

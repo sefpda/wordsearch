@@ -2,6 +2,8 @@ package org.kata;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HorizontalSearcherTest {
@@ -13,8 +15,8 @@ public class HorizontalSearcherTest {
             "UGM",
             "ROX"
         };
-        String[] result = HorizontalSearcher.instance().findCoordinates(rows, "WE");
-        assertEquals("WE: (0,0),(1,0)", result[0]);
+        List<Result> result = HorizontalSearcher.instance().findCoordinates(rows, "WE");
+        assertEquals("WE: (0,0),(1,0)", result.get(0).text());
     }
 
     @Test
@@ -26,8 +28,8 @@ public class HorizontalSearcherTest {
             "SZOPS",
             "QWERT"
         };
-        String[] result = HorizontalSearcher.instance().findCoordinates(rows, "RUM");
-        assertEquals("RUM: (1,2),(2,2),(3,2)", result[0]);
+        List<Result> result = HorizontalSearcher.instance().findCoordinates(rows, "RUM");
+        assertEquals("RUM: (1,2),(2,2),(3,2)", result.get(0).text());
     }
 
     @Test
@@ -37,8 +39,8 @@ public class HorizontalSearcherTest {
             "RIV",
             "YUP"
         };
-        String[] result = HorizontalSearcher.instance().findCoordinates(rows, "UP");
-        assertEquals("UP: (1,2),(2,2)", result[0]);
+        List<Result> result = HorizontalSearcher.instance().findCoordinates(rows, "UP");
+        assertEquals("UP: (1,2),(2,2)", result.get(0).text());
     }
 
     @Test
@@ -48,9 +50,9 @@ public class HorizontalSearcherTest {
             "TON",
             "OON"
         };
-        String[] results = HorizontalSearcher.instance().findCoordinates(rows, "ON");
-        assertEquals("ON: (0,0),(1,0)", results[0]);
-        assertEquals("ON: (1,1),(2,1)", results[1]);
-        assertEquals("ON: (1,2),(2,2)", results[2]);
+        List<Result> results = HorizontalSearcher.instance().findCoordinates(rows, "ON");
+        assertEquals("ON: (0,0),(1,0)", results.get(0).text());
+        assertEquals("ON: (1,1),(2,1)", results.get(1).text());
+        assertEquals("ON: (1,2),(2,2)", results.get(2).text());
     }
 }

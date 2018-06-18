@@ -16,10 +16,10 @@ class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
         return INSTANCE;
     }
 
-    String[] findCoordinates(String[] rows, String word) {
+    List<Result> findCoordinates(String[] rows, String word) {
         int[] x = new int[rows.length];
         int[] y = new int[rows.length];
-        List<String> results = new ArrayList<String>();
+        List<Result> results = new ArrayList<Result>();
         String reversed = new StringBuilder(word).reverse().toString();
         for (int startY = 0; startY < rows.length - 1; startY++) {
             for (int startX = 0; startX < rows.length - 1; startX++) {
@@ -36,10 +36,12 @@ class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
                         x[j] = xOffset - j;
                         y[j] = yOffset - j;
                     }
-                    results.add(new Result(word, x, y).text());
+                    results.add(new Result(word, x, y));
+                    x = new int[rows.length];
+                    y = new int[rows.length];
                 }
             }
         }
-        return results.toArray(new String[0]);
+        return results;
     }
 }

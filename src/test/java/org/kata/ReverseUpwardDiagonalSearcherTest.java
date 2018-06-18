@@ -2,6 +2,8 @@ package org.kata;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReverseUpwardDiagonalSearcherTest {
@@ -13,8 +15,8 @@ public class ReverseUpwardDiagonalSearcherTest {
                 "AOM",
                 "TOP"
         };
-        String[] result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "BOT");
-        assertEquals("BOT: (2,0),(1,1),(0,2)", result[0]);
+        List<Result> result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "BOT");
+        assertEquals("BOT: (2,0),(1,1),(0,2)", result.get(0).text());
     }
 
     @Test
@@ -27,8 +29,8 @@ public class ReverseUpwardDiagonalSearcherTest {
                 "NQREDC",
                 "ZXWPOL"
         };
-        String[] result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "FOR");
-        assertEquals("FOR: (4,2),(3,3),(2,4)", result[0]);
+        List<Result> result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "FOR");
+        assertEquals("FOR: (4,2),(3,3),(2,4)", result.get(0).text());
     }
 
     @Test
@@ -40,8 +42,8 @@ public class ReverseUpwardDiagonalSearcherTest {
                 "IOPNJ",
                 "UPJLN"
         };
-        String[] result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "DOG");
-        assertEquals("DOG: (2,0),(1,1),(0,2)", result[0]);
+        List<Result> result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "DOG");
+        assertEquals("DOG: (2,0),(1,1),(0,2)", result.get(0).text());
     }
 
     @Test
@@ -51,8 +53,8 @@ public class ReverseUpwardDiagonalSearcherTest {
                 "WEO",
                 "ANT"
         };
-        String[] result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "ON");
-        assertEquals("ON: (2,1),(1,2)", result[0]);
+        List<Result> result = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "ON");
+        assertEquals("ON: (2,1),(1,2)", result.get(0).text());
     }
 
     @Test
@@ -62,8 +64,8 @@ public class ReverseUpwardDiagonalSearcherTest {
                 "OPT",
                 "NOQ"
         };
-        String[] results = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "TO");
-        assertEquals("TO: (2,1),(1,2)", results[0]);
-        assertEquals("TO: (1,0),(0,1)", results[1]);
+        List<Result> results = ReverseUpwardDiagonalSearcher.instance().findCoordinates(rows, "TO");
+        assertEquals("TO: (2,1),(1,2)", results.get(0).text());
+        assertEquals("TO: (1,0),(0,1)", results.get(1).text());
     }
 }

@@ -2,6 +2,8 @@ package org.kata;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReverseHorizontalSearcherTest {
@@ -13,8 +15,8 @@ public class ReverseHorizontalSearcherTest {
                 "TOW",
                 "MAT"
         };
-        String[] result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "FAN");
-        assertEquals("FAN: (2,0),(1,0),(0,0)", result[0]);
+        List<Result> result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "FAN");
+        assertEquals("FAN: (2,0),(1,0),(0,0)", result.get(0).text());
     }
 
     @Test
@@ -26,8 +28,8 @@ public class ReverseHorizontalSearcherTest {
                 "PLBOQ",
                 "ZBGEN"
         };
-        String[] result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "TON");
-        assertEquals("TON: (3,2),(2,2),(1,2)", result[0]);
+        List<Result> result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "TON");
+        assertEquals("TON: (3,2),(2,2),(1,2)", result.get(0).text());
     }
 
     @Test
@@ -37,8 +39,8 @@ public class ReverseHorizontalSearcherTest {
                 "MAN",
                 "ZIH"
         };
-        String[] result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "HI");
-        assertEquals("HI: (2,2),(1,2)", result[0]);
+        List<Result> result = ReverseHorizontalSearcher.instance().findCoordinates(rows, "HI");
+        assertEquals("HI: (2,2),(1,2)", result.get(0).text());
     }
 
     @Test
@@ -48,9 +50,9 @@ public class ReverseHorizontalSearcherTest {
                 "UIP",
                 "ERN"
         };
-        String[] results = ReverseHorizontalSearcher.instance().findCoordinates(rows, "PI");
-        assertEquals("PI: (1,0),(0,0)", results[0]);
-        assertEquals("PI: (2,1),(1,1)", results[1]);
+        List<Result> results = ReverseHorizontalSearcher.instance().findCoordinates(rows, "PI");
+        assertEquals("PI: (1,0),(0,0)", results.get(0).text());
+        assertEquals("PI: (2,1),(1,1)", results.get(1).text());
 
     }
 }

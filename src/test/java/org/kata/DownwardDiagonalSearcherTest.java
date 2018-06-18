@@ -2,6 +2,7 @@ package org.kata;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,8 +16,8 @@ public class DownwardDiagonalSearcherTest {
             "SUN",
             "TON",
         };
-        String[] result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "RUN");
-        assertEquals("RUN: (0,0),(1,1),(2,2)", result[0]);
+        List<Result> result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "RUN");
+        assertEquals("RUN: (0,0),(1,1),(2,2)", result.get(0).text());
     }
 
     @Test
@@ -27,8 +28,8 @@ public class DownwardDiagonalSearcherTest {
             "ROOT",
             "COPM"
         };
-        String[] result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TOM");
-        assertEquals("TOM: (1,1),(2,2),(3,3)", result[0]);
+        List<Result> result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TOM");
+        assertEquals("TOM: (1,1),(2,2),(3,3)", result.get(0).text());
     }
 
     @Test
@@ -38,8 +39,8 @@ public class DownwardDiagonalSearcherTest {
             "RUN",
             "AQB",
         };
-        String[] result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "ON");
-        assertEquals("ON: (1,0),(2,1)", result[0]);
+        List<Result> result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "ON");
+        assertEquals("ON: (1,0),(2,1)", result.get(0).text());
     }
 
     @Test
@@ -51,8 +52,8 @@ public class DownwardDiagonalSearcherTest {
             "NVPTR",
             "YPIJZ"
         };
-        String[] result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TOR");
-        assertEquals("TOR: (2,1),(3,2),(4,3)", result[0]);
+        List<Result> result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TOR");
+        assertEquals("TOR: (2,1),(3,2),(4,3)", result.get(0).text());
     }
 
     @Test
@@ -62,8 +63,8 @@ public class DownwardDiagonalSearcherTest {
             "TXP",
             "AOI"
         };
-        String[] result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TO");
-        assertEquals("TO: (0,1),(1,2)", result[0]);
+        List<Result> result = DownwardDiagonalSearcher.instance().findCoordinates(rows, "TO");
+        assertEquals("TO: (0,1),(1,2)", result.get(0).text());
     }
 
     @Test
@@ -73,8 +74,8 @@ public class DownwardDiagonalSearcherTest {
             "ONH",
             "YHM"
         };
-        String[] results = DownwardDiagonalSearcher.instance().findCoordinates(rows, "OH");
-        assertEquals("OH: (1,0),(2,1)", results[0]);
-        assertEquals("OH: (0,1),(1,2)", results[1]);
+        List<Result> results = DownwardDiagonalSearcher.instance().findCoordinates(rows, "OH");
+        assertEquals("OH: (1,0),(2,1)", results.get(0).text());
+        assertEquals("OH: (0,1),(1,2)", results.get(1).text());
     }
 }

@@ -1,5 +1,7 @@
 package org.kata;
 
+import java.util.List;
+
 class ReverseHorizontalSearcher extends AbstractSearcher {
 
     private static ReverseHorizontalSearcher INSTANCE;
@@ -13,7 +15,7 @@ class ReverseHorizontalSearcher extends AbstractSearcher {
         return INSTANCE;
     }
 
-    String[] findCoordinates(String[] source, String word) {
+    List<Result> findCoordinates(String[] source, String word) {
         boolean xStable = false;
         boolean yStable = true;
         return findReverseCoordinatesAlongStraightLine(source, word, xStable, yStable);

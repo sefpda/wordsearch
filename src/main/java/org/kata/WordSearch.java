@@ -49,7 +49,7 @@ public class WordSearch {
     }
 
     private String coordinates(String word) {
-        List<String> results = new ArrayList<String>();
+        List<Result> results = new ArrayList<Result>();
         addResults(results, HorizontalSearcher.instance(), this.rows, word);
         addResults(results, VerticalSearcher.instance(), this.columns, word);
         addResults(results, DownwardDiagonalSearcher.instance(), this.rows, word);
@@ -58,13 +58,13 @@ public class WordSearch {
         addResults(results, ReverseHorizontalSearcher.instance(), this.rows, word);
         addResults(results, ReverseDownwardDiagonalSearcher.instance(), this.rows, word);
         addResults(results, ReverseUpwardDiagonalSearcher.instance(), this.rows, word);
-        return results.isEmpty() ? null : results.get(0);
+        return results.isEmpty() ? null : results.get(0).text();
     }
 
-    private void addResults(List<String> allResults, AbstractSearcher searcher, String[] grid, String word) {
-        String[] currentSearchResult = searcher.findCoordinates(grid, word);
+    private void addResults(List<Result> allResults, AbstractSearcher searcher, String[] grid, String word) {
+        List<Result> currentSearchResult = searcher.findCoordinates(grid, word);
         if (currentSearchResult != null) {
-            for (String result :
+            for (Result result :
                     currentSearchResult) {
                 if (result != null) allResults.add(result);
             }

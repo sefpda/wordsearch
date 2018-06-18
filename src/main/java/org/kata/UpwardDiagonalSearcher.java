@@ -16,10 +16,10 @@ class UpwardDiagonalSearcher extends AbstractSearcher {
         return INSTANCE;
     }
 
-    String[] findCoordinates(String[] rows, String word) {
+    List<Result> findCoordinates(String[] rows, String word) {
         int[] x = new int[rows.length];
         int[] y = new int[rows.length];
-        List<String> results = new ArrayList<String>();
+        List<Result> results = new ArrayList<Result>();
         for (int startY = rows.length - 1; startY > 0; startY--) {
             for (int startX = 0; startX < rows.length - 1; startX++) {
                 if (startY < rows.length - 1 && startX > 0) continue; // only go past x 0 for last row
@@ -35,11 +35,13 @@ class UpwardDiagonalSearcher extends AbstractSearcher {
                         x[j] = j + xOffset;
                         y[j] = yOffset - j;
                     }
-                    results.add(new Result(word, x, y).text());
+                    results.add(new Result(word, x, y));
+                    x = new int[rows.length];
+                    y = new int[rows.length];
                 }
             }
         }
-        return results.toArray(new String[0]);
+        return results;
     }
 
 }

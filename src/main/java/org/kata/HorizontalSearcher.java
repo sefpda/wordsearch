@@ -1,5 +1,7 @@
 package org.kata;
 
+import java.util.List;
+
 class HorizontalSearcher extends AbstractSearcher {
 
     private static HorizontalSearcher INSTANCE;
@@ -13,7 +15,7 @@ class HorizontalSearcher extends AbstractSearcher {
         return INSTANCE;
     }
 
-    String[] findCoordinates(String[] source, String word) {
+    List<Result> findCoordinates(String[] source, String word) {
         boolean xStable = false;
         boolean yStable = true;
         return findMultipleCoordinatesAlongStraightLine(source, word, xStable, yStable);
