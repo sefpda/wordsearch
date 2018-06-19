@@ -5,6 +5,8 @@ import java.util.List;
 
 abstract class AbstractSearcher {
 
+    abstract List<Result> findCoordinates(String[] rows, String word);
+
     protected List<Result> findMultipleCoordinatesAlongStraightLine(String[] source, String word, boolean xStable, boolean yStable) {
         int[] x = new int[source.length];
         int[] y = new int[source.length];
@@ -41,6 +43,4 @@ abstract class AbstractSearcher {
         }
         return results;
     }
-
-    abstract List<Result> findCoordinates(String[] rows, String word);
 }
