@@ -2,7 +2,7 @@ package org.kata;
 
 import java.util.List;
 
-class ReverseHorizontalSearcher extends AbstractSearcher {
+class ReverseHorizontalSearcher extends AbstractStraightSearcher {
 
     private static ReverseHorizontalSearcher INSTANCE;
 

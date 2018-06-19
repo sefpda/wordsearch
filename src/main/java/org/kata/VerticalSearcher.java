@@ -2,7 +2,7 @@ package org.kata;
 
 import java.util.List;
 
-class VerticalSearcher extends AbstractSearcher {
+class VerticalSearcher extends AbstractStraightSearcher {
 
     private static VerticalSearcher INSTANCE;
 
@@ -18,6 +18,6 @@ class VerticalSearcher extends AbstractSearcher {
     List<Result> findCoordinates(String[] source, String word) {
         boolean xStable = true;
         boolean yStable = false;
-        return findMultipleCoordinatesAlongStraightLine(source, word, xStable, yStable);
+        return findCoordinatesAlongStraightLine(source, word, xStable, yStable);
     }
 }
