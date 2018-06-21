@@ -1,5 +1,7 @@
 package org.kata;
 
+import java.util.List;
+
 class DownwardDiagonalSearcher extends AbstractDiagonalSearcher {
 
     private static DownwardDiagonalSearcher INSTANCE;
@@ -11,6 +13,11 @@ class DownwardDiagonalSearcher extends AbstractDiagonalSearcher {
             INSTANCE = new DownwardDiagonalSearcher();
         }
         return INSTANCE;
+    }
+
+    @Override
+    List<Result> findCoordinates(String[] rows, String word) {
+        return findCoordinatesAlongDiagonalLine(rows, word);
     }
 
     protected int limitY(String[] rows) {

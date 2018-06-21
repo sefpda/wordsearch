@@ -5,7 +5,7 @@ import java.util.List;
 
 public abstract class AbstractDiagonalSearcher extends AbstractSearcher {
 
-    final protected List<Result> findCoordinates(String[] rows, String word) {
+    final protected List<Result> findCoordinatesAlongDiagonalLine(String[] rows, String word) {
         int[] x = new int[rows.length];
         int[] y = new int[rows.length];
 

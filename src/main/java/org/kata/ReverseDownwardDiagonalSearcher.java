@@ -19,6 +19,7 @@ class ReverseDownwardDiagonalSearcher extends AbstractSearcher {
     List<Result> findCoordinates(String[] rows, String word) {
         int[] x = new int[rows.length];
         int[] y = new int[rows.length];
+
         List<Result> results = new ArrayList<Result>();
         String reversed = new StringBuilder(word).reverse().toString();
         for (int startY = 0; startY < rows.length - 1; startY++) {
